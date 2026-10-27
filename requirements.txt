@@ -1,6 +1,5 @@
 streamlit
 pandas
-plotly
-matplotlib
-pulp
+pulp==2.8.0
 openpyxl
+plotly
