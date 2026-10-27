@@ -65,8 +65,8 @@ def resolver_anio(p, produccion, modo="estacional", abiertos_fijos=None):
     n = len(produccion)
     dems = [demanda_zonas(p, v) for v in produccion]
     m = pulp.LpProblem("red_2025", pulp.LpMinimize)
-    ab = {(a, t): pulp.LpVariable(f"ab_{i}_{t}", 0, 1, pulp.LpInteger) for i, a in enumerate(alm) for t in range(n)}
-    anual = {a: pulp.LpVariable(f"an_{i}", 0, 1, pulp.LpInteger) for i, a in enumerate(alm)}
+    ab = {(a, t): pulp.LpVariable(f"ab_{i}_{t}", lowBound=0, upBound=1, cat=pulp.LpInteger) for i, a in enumerate(alm) for t in range(n)}
+    anual = {a: pulp.LpVariable(f"an_{i}", lowBound=0, upBound=1, cat=pulp.LpInteger) for i, a in enumerate(alm)}
     x = {(a, t): pulp.LpVariable(f"x_{i}_{t}", lowBound=0) for i, a in enumerate(alm) for t in range(n)}
     y = {(a, z, t): pulp.LpVariable(f"y_{i}_{j}_{t}", lowBound=0)
          for i, a in enumerate(alm) for j, z in enumerate(zonas) for t in range(n)}
